@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>星露谷物语世界探索</title>
+    <style>
+        /* 整体页面样式 */
+        body {
+            font-family: 'Press Start 2P', cursive;
+            /* 使用类似游戏字体 */
+            background-image: url('https://media.9game.cn/gamebase/ieu-gdc-pre-process/images/20240527/3/19/9b653090545bc155e4dfc455f207c8a2.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* 标题样式 */
+        h1 {
+            text-align: center;
+            color: #FFD700;
+            /* 金色 */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            font-size: 2.5em;
+            margin-top: 20px;
+        }
+
+        /* 导航栏样式 */
+        nav {
+            background-color: rgba(0, 0, 0, 0.6);
+            text-align: center;
+            padding: 10px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #FFD700;
+        }
+
+        /* 板块容器样式 */
+     .section-container {
+            padding: 20px;
+        }
+
+        /* 板块标题样式 */
+     .section-title {
+            text-align: center;
+            color: #FFD700;
+            font-size: 2em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            margin-bottom: 20px;
+        }
+
+        /* NPC块样式 */
+     .npc-block {
+            border: 2px solid #FFD700;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px;
+            background-color: rgba(0, 0, 0, 0.8);
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+            display: flex;
+            align-items: center;
+        }
+
+        /* NPC图片样式 */
+     .npc-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-right: 20px;
+            object-fit: cover;
+        }
+
+        /* NPC名称样式 */
+     .npc-name {
+            text-align: left;
+            color: #FFD700;
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        /* NPC描述样式 */
+     .npc-description {
+            text-align: left;
+            color: #fff;
+        }
+
+        /* NPC日程表样式 */
+     .schedule {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 10px;
+        }
+
+        /* 日程表项目样式 */
+     .schedule-item {
+            margin-bottom: 5px;
+        }
+
+        /* 玩家板块样式 */
+     .player-tips {
+            border: 2px solid #FFD700;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px;
+            background-color: rgba(0, 0, 0, 0.8);
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+
+        /* 玩家板块标题样式 */
+     .player-tips-title {
+            text-align: center;
+            color: #FFD700;
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        /* 玩家提示内容样式 */
+     .player-tip {
+            margin-bottom: 10px;
+        }
+
+        /* 游戏元素图标样式 */
+     .game-element-icon {
+            width: 30px;
+            height: 30px;
+            margin-right: 5px;
+            display: inline-block;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>星露谷物语：NPC与玩家指南</h1>
+    <nav>
+        <a href="#npc-intro">NPC介绍</a>
+        <a href="#npc-schedules">NPC日程</a>
+        <a href="#player-section">玩家板块</a>
+    </nav>
+    <div class="section-container" id="npc-intro">
+        <h2 class="section-title">NPC详细介绍</h2>
+        <div class="npc-block">
+            <img class="npc-image"
+                src="https://cdn.statically.io/gh/ConcernedApe/StardewValley/1.6.4/Content/Characters/Farmer_Male.png"
+                alt="亚历克斯">
+            <div>
+                <h3 class="npc-name">亚历克斯</h3>
+                <p class="npc-description">亚历克斯是个充满活力与热情的青年，一心渴望成为职业运动员。他性格开朗乐观，是小镇上的活力源泉。父母去世后，与奶奶和爷爷生活在一起。他非常重视自己的运动梦想，每天都会坚持锻炼。喜欢吃披萨和荷包蛋，讨厌海胆和罂粟籽松饼。</p>
+            </div>
+        </div>
+        <div class="npc-block">
+            <img class="npc-image"
+                src="https://cdn.statically.io/gh/ConcernedApe/StardewValley/1.6.4/Content/Characters/Elliott.png"
+                alt="艾利欧特">
+            <div>
+                <h3 class="npc-name">艾利欧特</h3>
+                <p class="npc-description">艾利欧特是一位极具浪漫主义色彩的作家，他居住在海边的小木屋中，每日与海浪和海风为伴，从大自然中汲取灵感创作诗歌和小说。他举止优雅，言辞温和，充满了文艺气息。喜爱吃龙虾浓汤和鸭毛，讨厌石英和粘土。</p>
+            </div>
+        </div>
+        <div class="npc-block">
+            <img class="npc-image"
+                src="https://cdn.statically.io/gh/ConcernedApe/StardewValley/1.6.4/Content/Characters/Harvey.png"
+                alt="哈维">
+            <div>
+                <h3 class="npc-name">哈维</h3>
+                <p class="npc-description">哈维是小镇上的医生，他工作认真负责，总是尽自己最大的努力照顾每一位病人。性格有些腼腆和内向，但内心善良且温暖。他是个飞行爱好者，一直梦想着能翱翔蓝天。喜欢吃松露油和椰子，讨厌虫肉和鲤鱼。</p>
+            </div>
+        </div>
+        <div class="npc-block">
+            <img class="npc-image"
+                src="https://cdn.statically.io/gh/ConcernedApe/StardewValley/1.6.4/Content/Characters/Sam.png"
+                alt="山姆">
+            <div>
+                <h3 class="npc-name">山姆</h3>
+                <p class="npc-description">山姆是一个热爱音乐的年轻人，充满创造力和冒险精神。他是摇滚乐队的成员，梦想着有一天能举办一场盛大的演唱会。性格友善，容易相处，经常和朋友们一起玩音乐、滑板。喜欢吃披萨和枫糖棒，讨厌罂粟籽松饼和仙人掌果子。</p>
+            </div>
+        </div>
+        <div class="npc-block">
+            <img class="npc-image"
+                src="https://cdn.statically.io/gh/ConcernedApe/StardewValley/1.6.4/Content/Characters/Sebastian.png"
+                alt="塞巴斯蒂安">
+            <div>
+                <h3 class="npc-name">塞巴斯蒂安</h3>
+                <p class="npc-description">塞巴斯蒂安性格内敛、沉稳，喜欢独处，常沉浸在自己的电脑世界和摩托车爱好中。他是一个程序员，有时会显得有些冷漠，但内心十分细腻。与母亲罗宾、继父德米特里厄斯和妹妹玛鲁一起生活。喜欢吃生鱼片和南瓜汤，讨厌五彩碎片和黏土。</p>
+            </div>
+        </div>
+    </div>
+    <div class="section-container" id="npc-schedules">
+        <h2 class="section-title">NPC的一天（6点到凌晨2点）</h2>
+        <div class="npc-block">
+            <img class="npc-image"
+                src="https://cdn.statically.io/gh/ConcernedApe/StardewValley/1.6.4/Content/Characters/Farmer_Male.png"
+                alt="亚历克斯">
+            <div>
+                <h3 class="npc-name">亚历克斯</h3>
+                <ul class="schedule">
+                    <li class="schedule-item">早上6点 - 7点：在家中的客厅做俯卧撑、仰卧起坐等简单的健身运动。</li>
+                    <li class="schedule-item">早上7点 - 9点：前往沙滩，沿着沙滩进行晨跑锻炼。</li>
+                    <li class="schedule-item">早上9点 - 12点：在小镇广场和海莉、山姆等人聊天，分享生活点滴。</li>
+                    <li class="schedule-item">中午12点 - 1点：回到家中，奶奶已经准备好了午餐，享受美味的餐食。</li>
+                    <li class="schedule-item">下午1点 - 4点：有时会在自家院子里练习投掷运动器材。</li>
+                    <li class="schedule-item">下午4点 - 6点：前往体育馆，和教练交流并进行一些专业训练。</li>
+                    <li class="schedule-item">晚上6点 - 8点：回家洗澡换衣服后，和家人一起吃晚餐。</li>
+                    <li class="schedule-item">晚上8点 - 10点：在客厅看电视，关注体育赛事节目。</li>
+                    <li class="schedule-item">晚上10点 - 12点：在房间里做一些简单的拉伸，然后准备睡觉。</li>
+                    <li class="schedule-item">凌晨12点 - 2点：进入梦乡，为新的一天养精蓄锐。</li>
+                </ul>
+            </div>
+        </div>
+        <div class="npc-block">
+            <img class="npc-image"
+                src="https://cdn.statically.io/gh/ConcernedApe/StardewValley/1.6.4/Content/Characters/Elliott.png"
+                alt="艾利欧特">
+            <div>
+                <h3 class="npc-name">艾利欧特</h3>
+                <ul class="schedule">
+                    <li class="schedule-item">早上6点 - 7点：在海边小屋的窗前欣赏日出，记录下瞬间的灵感。</li>
+                    <li class="schedule-item">早上7点 - 9点：坐在书桌前，开始创作新的诗歌或小说章节。</li>
+                    <li class="schedule-item">早上9点 - 12点：带着笔记本漫步在沙滩上，寻找创作素材。</li>
+                    <li class="schedule-item">中午12点 - 1点：回到小屋，简单做一些午餐，比如三明治。</li>
+                    <li class="schedule-item">下午1点 - 4点：继续在书桌前写作，沉浸在自己的创作世界中。</li>
+                    <li class="schedule-item">下午4点 - 6点：前往小镇图书馆，查阅资料，丰富自己的知识储备。</li>
+                    <li class="schedule-item">晚上6点 - 8点：在小镇餐厅用餐，享受美食的同时观察周围的人。</li>
+                    <li class="schedule-item">晚上8点 - 10点：回到小屋，点燃蜡烛，阅读一些经典文学作品。</li>
+                    <li class="schedule-item">晚上10点 - 12点：在日记中记录一天的感悟，然后准备休息。</li>
+                    <li class="schedule-item">凌晨12点 - 2点：在轻柔的海浪声中进入梦乡。</li>
+                </ul>
+            </div>
+        </div>
+        <!-- 其他NPC日程可类似添加 -->
+    </div>
+    <div class="section-container" id="player-section">
+        <h2 class="section-title">玩家实用指南</h2>
+        <div class="player-tips">
+            <h3 class="player-tips-title">新手起步建议</h3>
+            <p class="player-tip"><span class="game-element-icon"
+                    style="background-image: url('https://cdn.statically.io/gh/ConcernedApe/StardewValley/1.6.4/Content/Items/IridiumBar.png');"></span>合理规划农田布局，初期优先种植生长周期短、利润高的作物，如草莓。</p>
+            <p class="player-tip"><span class="game-element-icon"
+                    style="background-image: url('https://cdn.statically.io/gh/ConcernedApe/StardewValley/1.6.4/Content/Items/CopperPickaxe.png');"></span>尽早升级工具，提高劳作效率。可以先从升级锄头、斧头和镐子开始。</p>
+            <p class="player-tip"><span class="game-element-icon"
+                    style="background-image: url('https://cdn.statically.io/gh/ConcernedApe/StardewValley/1.6.4/Content/Characters/Clint.png');"></span>与NPC保持良好关系，通过送礼物、完成任务等方式提升好感度，会获得各种奖励和帮助。</p>
+        </div>
+        <div class="player-tips">
+            <h3 class="player-tips-title">资源收集与利用</h3>
+            <p class="player-tip"><span class="game-element-icon"
+                    style="background-image: url('https://cdn.statically.io/gh/ConcernedApe/StardewValley/1.6.4/Content/Items/Wood.png');"></span>每天记得收集木材和石头，这些是升级建筑和制作工具的重要材料。</p>
+            <p class="player-tip"><span class="game-element-icon"
+                    style="background-image: url('https://cdn.statically.io/gh/ConcernedApe/StardewValley/1.6.4/Content/Items/IronOre.png');"></span>深入矿井挖掘矿石，不仅能获得金钱，还能找到珍贵的宝石用于制作或送礼。</p>
+            <p class="player-tip"><span class="game-element-icon"
+                    style="background-image: url('https://cdn.statically.io/gh/ConcernedApe/StardewValley/1.6.4/Content/Items/TreeSeeds.png');"></span>种植果树，果树成熟后可以长期提供水果资源，且水果价值较高。</p>
+        </div>
+    </div>
+    <audio autoplay loop>
+        <source src="https://cdn.statically.io/gh/ConcernedApe/StardewValley/1.6.4/Content/Music/Town.mp3"
+            type="audio/mpeg">
+        您的浏览器不支持音频播放。
+    </audio>
+</body>
+
+</html>
