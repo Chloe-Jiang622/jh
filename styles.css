@@ -1,6 +1,10 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    /* 设置背景图片 */
+    background-image: url('ground.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     margin: 0;
     padding: 0;
 }
@@ -13,7 +17,7 @@ header {
 }
 
 #poem-container {
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.8); /* 为诗的容器添加半透明背景，使其更易阅读 */
     border: 1px solid #ccc;
     border-radius: 5px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
