@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>变色按钮</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        #colorButton {
+            padding: 20px 40px;
+            font-size: 24px;
+            cursor: pointer;
+            border: none;
+            border-radius: 10px;
+            transition: background-color 0.3s;
+            color: white;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+        }
+
+        #clickCount {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #666;
+        }
+
+        #colorButton:hover {
+            transform: scale(1.05);
+            transition: transform 0.2s;
+        }
+    </style>
+</head>
+<body>
+    <button id="colorButton">点击改变颜色</button>
+    <div id="clickCount">点击次数：0</div>
+
+    <script>
+        const button = document.getElementById('colorButton');
+        const clickCountElement = document.getElementById('clickCount');
+        let clickCount = 0;
+        let currentHue = 0;
+
+        function getRandomColor() {
+            // 使用HSL颜色模式实现鲜艳的颜色变化
+            currentHue = (currentHue + 120 + Math.random() * 60) % 360;
+            return `hsl(${currentHue}deg, 80%, 50%)`;
+        }
+
+        function handleClick() {
+            clickCount++;
+            const newColor = getRandomColor();
+            
+            button.style.backgroundColor = newColor;
+            clickCountElement.textContent = `点击次数：${clickCount}`;
+            
+            // 添加点击动画效果
+            button.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                button.style.transform = 'scale(1)';
+            }, 100);
+        }
+
+        // 初始化按钮颜色
+        button.style.backgroundColor = getRandomColor();
+        
+        // 添加点击事件监听
+        button.addEventListener('click', handleClick);
+    </script>
+</body>
+</html>
