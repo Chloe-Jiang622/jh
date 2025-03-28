@@ -2,111 +2,69 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>本地音乐播放器</title>
+    <title>音乐播放器</title>
     <style>
         body {
-            background: linear-gradient(135deg, #ffb6c1 0%, #87cefa 100%);
-            height: 100vh;
-            margin: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
-            font-family: '楷体', cursive;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
         }
 
-        .cd-player {
-            position: relative;
-            margin-top: 50px;
+        .player-container {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
 
-        .cd {
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            background: 
-                radial-gradient(circle at 50% 50%, 
-                    #fff 0%, 
-                    #f5f5f5 30%, 
-                    #e0e0e0 60%, 
-                    #bdbdbd 100%);
-            box-shadow: 0 0 30px rgba(255,182,193,0.6);
-            animation: rotate 20s linear infinite;
-            animation-play-state: paused;
-            position: relative;
-            background-size: cover;
-            background-position: center;
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
         }
 
-        /* 其余样式保持与之前相同... */
+        button:hover {
+            background-color: #45a049;
+        }
     </style>
 </head>
 <body>
-    <div class="cd-player">
-        <div class="cd" id="cd"></div>
-    </div>
-    
-    <div class="controls">
-        <div id="songTitle">请先上传音乐和封面</div>
-        <audio id="audioPlayer" controls style="display: none;"></audio>
+    <div class="player-container">
+        <audio id="myAudio" controls style="display: none;">
+            <!-- 替换成你的音乐文件路径 -->
+            <source src="your-music-file.mp3" type="audio/mpeg">
+            您的浏览器不支持音频播放
+        </audio>
         
-        <!-- 新增图片上传按钮 -->
-        <label>
-            <input type="file" id="imageInput" accept="image/*">
-            <button class="custom-upload">上传封面</button>
-        </label>
-
-        <button onclick="togglePlay()">播放/暂停</button>
-        
-        <label>
-            <input type="file" id="musicInput" accept="audio/*">
-            <button class="custom-upload">上传音乐</button>
-        </label>
+        <button onclick="togglePlayback()">播放</button>
     </div>
 
     <script>
-        const audioPlayer = document.getElementById('audioPlayer');
-        const cd = document.getElementById('cd');
-        const musicInput = document.getElementById('musicInput');
-        const imageInput = document.getElementById('imageInput');
-        const songTitle = document.getElementById('songTitle');
+        const audio = document.getElementById('myAudio');
+        const button = document.querySelector('button');
 
-        // 处理音乐上传
-        musicInput.addEventListener('change', function(e) {
-            const file = e.target.files[0];
-            if (file && file.type.startsWith('audio/')) {
-                const url = URL.createObjectURL(file);
-                audioPlayer.src = url;
-                songTitle.textContent = `正在播放：${file.name}`;
-            }
-        });
-
-        // 处理图片上传
-        imageInput.addEventListener('change', function(e) {
-            const file = e.target.files[0];
-            if (file && file.type.startsWith('image/')) {
-                const url = URL.createObjectURL(file);
-                cd.style.backgroundImage = `url(${url}), 
-                    radial-gradient(circle at 50% 50%, 
-                        #fff 0%, 
-                        #f5f5f5 30%, 
-                        #e0e0e0 60%, 
-                        #bdbdbd 100%)`;
-            }
-        });
-
-        // 播放控制（保持原有逻辑）
-        function togglePlay() {
-            if (audioPlayer.paused) {
-                audioPlayer.play();
-                cd.style.animationPlayState = 'running';
+        function togglePlayback() {
+            if (audio.paused) {
+                audio.play();
+                button.textContent = '暂停';
             } else {
-                audioPlayer.pause();
-                cd.style.animationPlayState = 'paused';
+                audio.pause();
+                button.textContent = '播放';
             }
         }
 
-        audioPlayer.addEventListener('ended', () => {
-            cd.style.animationPlayState = 'paused';
+        // 可选：当音频自然播放结束时重置按钮
+        audio.addEventListener('ended', () => {
+            button.textContent = '播放';
         });
     </script>
 </body>
