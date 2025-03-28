@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>触碰显示坐标</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-color: #f0f0f0;
+            touch-action: none; /* 阻止默认触摸行为 */
+        }
+
+        #touch-area {
+            flex: 1;
+            background-color: #ffffff;
+            border: 2px solid #333;
+            margin: 20px;
+            position: relative;
+        }
+
+        #coordinates {
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            border-radius: 5px;
+            font-family: Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <div id="touch-area"></div>
+    <div id="coordinates">坐标：</div>
+
+    <script>
+        const touchArea = document.getElementById('touch-area');
+        const coordinatesDiv = document.getElementById('coordinates');
+
+        // 处理触摸事件
+        function handleTouch(e) {
+            e.preventDefault(); // 阻止默认行为
+            const touches = e.touches;
+            if (touches.length > 0) {
+                const firstTouch = touches[0];
+                updateCoordinates(firstTouch.clientX, firstTouch.clientY);
+            }
+        }
+
+        // 处理鼠标事件
+        function handleMouse(e) {
+            updateCoordinates(e.clientX, e.clientY);
+        }
+
+        function updateCoordinates(x, y) {
+            coordinatesDiv.textContent = `坐标：X: ${x}px, Y: ${y}px`;
+        }
+
+        // 添加事件监听器
+        touchArea.addEventListener('touchstart', handleTouch);
+        touchArea.addEventListener('touchmove', handleTouch);
+        touchArea.addEventListener('mousedown', handleMouse);
+        touchArea.addEventListener('mousemove', handleMouse);
+
+        // 初始化提示
+        coordinatesDiv.textContent = '触摸或点击屏幕任意位置查看坐标';
+    </script>
+</body>
+</html>
