@@ -173,72 +173,74 @@
   </footer>
 
   <script>
-    function showSection(id) {
-      document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
-      document.getElementById(id).classList.add('active');
-    }
+  function showSection(id) {
+    document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+  }
 
-    // 词频柱状图
-    const chartDom = document.getElementById('barChart');
-    const myChart = echarts.init(chartDom);
+  // 词频柱状图
+  const chartDom = document.getElementById('barChart');
+  const myChart = echarts.init(chartDom);
 
-    const option = {
-      title: {
-        text: '高频词统计',
-        left: 'center',
-        textStyle: {
-          color: '#ffffff',
-          fontSize: 20
-        }
+  const option = {
+    title: {
+      text: '高频词统计',
+      left: 'center',
+      textStyle: {
+        color: '#ffffff',
+        fontSize: 20
+      }
+    },
+    tooltip: {},
+    grid: {
+      left: '10%',
+      right: '10%',
+      bottom: '20%',
+      containLabel: true
+    },
+    xAxis: {
+      type: 'category',
+      data: [
+        '论文', 'doge', '男朋友', '哈哈哈', '允悲', '生日快乐', '听说', '高学历', '查重', '真的',
+        '对象', '快乐', '蹲个', '苦涩', '男友', '评论', '天临', '哈哈哈哈', '翟天临'
+      ],
+      axisLabel: {
+        rotate: 30,
+        color: '#ddd',
+        fontSize: 12,
+        interval: 0
+      }
+    },
+    yAxis: {
+      type: 'value',
+      axisLabel: {
+        color: '#ddd'
+      }
+    },
+    series: [{
+      type: 'bar',
+      barWidth: '50%',
+      barCategoryGap: '30%',
+      data: [
+        271, 135, 115, 113, 108, 88, 73, 72, 72, 67,
+        66, 57, 56, 55, 50, 47, 45, 40, 37
+      ],
+      itemStyle: {
+        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+          { offset: 0, color: '#ff00cc' },
+          { offset: 1, color: '#3333ff' }
+        ])
       },
-      tooltip: {},
-      grid: {
-        left: '5%',
-        right: '5%',
-        bottom: '20%',
-        containLabel: true
-      },
-      xAxis: {
-        type: 'category',
-        data: [
-          '论文', 'doge', '男朋友', '哈哈哈', '允悲', '生日快乐', '听说', '高学历', '查重', '真的',
-          '对象', '快乐', '蹲个', '苦涩', '男友', '评论', '天临', '哈哈哈哈', '翟天临'
-        ],
-        axisLabel: {
-          rotate: 30,
-          color: '#ddd',
-          fontSize: 12
-        }
-      },
-      yAxis: {
-        type: 'value',
-        axisLabel: {
-          color: '#ddd'
-        }
-      },
-      series: [{
-        type: 'bar',
-        barWidth: 22,
-        data: [
-          271, 135, 115, 113, 108, 88, 73, 72, 72, 67,
-          66, 57, 56, 55, 50, 47, 45, 40, 37
-        ],
+      emphasis: {
         itemStyle: {
-          color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-            { offset: 0, color: '#ff00cc' },
-            { offset: 1, color: '#3333ff' }
-          ])
-        },
-        emphasis: {
-          itemStyle: {
-            color: '#00ffff'
-          }
+          color: '#00ffff'
         }
-      }],
-      backgroundColor: '#1a1a2e'
-    };
+      }
+    }],
+    backgroundColor: '#1a1a2e'
+  };
 
-    myChart.setOption(option);
-  </script>
+  myChart.setOption(option);
+</script>
 </body>
 </html>
