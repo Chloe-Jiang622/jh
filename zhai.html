@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+ <meta charset="UTF-8">
+ <title>翟天临微博评论分析</title>
+ <script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js "></script>
+ <style>
+  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap ');
+  body {
+   margin: 0;
+   font-family: 'Orbitron', sans-serif;
+   background: linear-gradient(45deg, #1a0033, #330033, #000044);
+   background-size: 300% 300%;
+   animation: gradientBG 20s ease infinite;
+   color: #fff;
+  }
+
+  @keyframes gradientBG {
+   0% { background-position: 0% 50%; }
+   50% { background-position: 100% 50%; }
+   100% { background-position: 0% 50%; }
+  }
+
+  header {
+   background: rgba(0,0,0,0.8);
+   padding: 30px;
+   text-align: center;
+   border-bottom: 3px solid #ff00ff;
+   text-shadow: 0 0 20px #00ffff;
+  }
+
+  h1 {
+   font-size: 3rem;
+   color: #ff00ff;
+  }
+
+  nav {
+   display: flex;
+   justify-content: center;
+   background-color: rgba(0, 0, 0, 0.7);
+   border-bottom: 2px solid #00ffff;
+  }
+
+  nav a {
+   color: #00ffff;
+   padding: 15px 30px;
+   text-decoration: none;
+   font-weight: bold;
+   transition: background 0.3s;
+   cursor: pointer;
+  }
+
+  nav a:hover {
+   background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .section {
+   display: none;
+   padding: 40px;
+   min-height: 400px;
+   transition: opacity 0.5s ease;
+   opacity: 0;
+  }
+
+  .active {
+   display: block;
+   opacity: 1;
+  }
+
+  img {
+   max-width: 100%;
+   margin-top: 20px;
+   box-shadow: 0 2px 20px rgba(0, 255, 255, 0.4);
+  }
+
+  .caption {
+   font-size: 0.9em;
+   color: #aaa;
+   margin-top: 5px;
+  }
+
+  footer {
+   text-align: center;
+   padding: 20px;
+   font-size: 0.8em;
+   color: #aaa;
+   background-color: rgba(0,0,0,0.6);
+   border-top: 1px solid #555;
+  }
+
+  .emoji-section {
+   background: linear-gradient(135deg, #330033, #000000);
+   background-image: url('https://img.icons8.com/clouds/100/000000/happy--v1.png ');
+   background-repeat: no-repeat;
+   background-position: right bottom;
+   background-size: 180px;
+  }
+
+  .word-section {
+   background: linear-gradient(135deg, #1a0033, #400040);
+  }
+
+  #barChart {
+   width: 100%;
+   height: 500px;
+   background: #1a1a2e;
+   border-radius: 10px;
+   box-shadow: 0 0 20px #ff00ff55;
+   padding: 20px;
+  }
+ </style>
+</head>
+<body>
+ <header>
+  <h1>翟天临微博评论分析</h1>
+  <p style="font-size: 1.2rem;">关键词涌动 × 情绪光谱 × 舆情共振</p>
+ </header>
+
+ <nav>
+  <a onclick="showSection('intro')">事件简介</a>
+  <a onclick="showSection('word')">词频分析</a>
+  <a onclick="showSection('sentiment')">情感分析</a>
+ </nav>
+
+ <div id="intro" class="section active" style="background: linear-gradient(135deg, #200040, #0a001a);">
+  <h2 style="color: #00ffff;">🕵️ 事件起始简介</h2>
+  <p style="font-size: 1.1rem; line-height: 1.8em;">
+   2019年初，演员翟天临在直播中被网友提问："你有查重吗？"他随口回应："知网是什么？"这一回应迅速引爆舆论。
+   网友随即深扒其博士论文，最终发现论文存在严重抄袭现象，引发关于学术诚信、娱乐圈特权的广泛讨论。
+  </p>
+  <p style="font-size: 1.1rem;">
+   微博评论区成为公众情绪的集散地，揭示舆论的集体意识与批判能量。
+  </p>
+  <p>
+   🔗 <a href="https://weibo.com/u/1914102767 " target="_blank" style="color: #ff99ff;">点击进入翟天临微博主页</a>
+  </p>
+ </div>
+
+ <div id="word" class="section word-section">
+  <h2 style="font-size: 2.5rem; color: #00ffff; text-shadow: 0 0 10px #ff00ff;">📊 高频词涌动</h2>
+  <p style="font-size: 1.2rem; color: #ddd;">
+   评论数据经分词处理后，提取高频词构建词云与词频图，观察公众聚焦。
+  </p>
+
+  <div style="border: 2px dashed #00ffcc; padding: 1rem; background: rgba(0,0,0,0.3); box-shadow: 0 0 20px #ff00ff; margin-top: 2rem;">
+   <img src="cloud.jpg" alt="词云图">
+   <p class="caption">图1：评论词云图</p>
+  </div>
+
+  <div style="border: 2px dashed #00ffcc; padding: 1rem; background: rgba(0,0,0,0.3); box-shadow: 0 0 20px #00ffff; margin-top: 2rem; max-width: 1300px; margin-left: auto; margin-right: auto;">
+   <div id="barChart"></div>
+   <iframe src="pinci.html" width="100%" height="550px" style="border:none; box-shadow: 0 0 25px #00ffff; margin-top: 1rem;"></iframe> 
+   <p class="caption">图3：高频词统计柱状图</p>
+  </div>
+
+  <p style="font-size: 1.1rem; margin-top: 2rem; color: #ccc;">
+   高频词如"论文"、"查重"体现了公众对学术造假与制度资源分配问题的集中关注。
+  </p>
+ </div>
+
+ <div id="sentiment" class="section emoji-section">
+  <h2 style="font-size: 2.5rem; color: #00ffff; text-shadow: 0 0 10px #ff00ff;">💬 情绪感知</h2>
+  <p style="font-size: 1.2rem; color: #ddd;">
+   通过 SnowNLP 对微博评论情感倾向进行分析，划分为正面、中性、负面三类情绪光谱。
+  </p>
+
+  <iframe src="sentiment_pie.html" width="100%" height="450px" style="border:none; box-shadow: 0 0 25px #00ffff; margin-top: 1rem;"></iframe>
+  <p class="caption">图3：情感倾向分布图</p>
+
+  <p style="font-size: 1.1rem; margin-top: 2rem; color: #ccc;">
+   数据显示，负面评论占比明显，表现出公众对学术不端行为的愤怒与讽刺；少数正面评论聚焦制度建设与理性反思。
+  </p>
+ </div>
+
+ <footer>
+  新闻传播学院课程展示 · 数据采集时间：2025年6月 · 工具：Python × SnowNLP × Pyecharts
+ </footer>
+
+<script>
+function showSection(sectionId) {
+  // 隐藏所有section
+  document.querySelectorAll('.section').forEach(sec => {
+    sec.classList.remove('active');
+    sec.style.opacity = 0;
+  });
+  
+  // 显示目标section
+  const target = document.getElementById(sectionId);
+  target.classList.add('active');
+  setTimeout(() => {
+    target.style.opacity = 1;
+  }, 50);
+}
+</script>
+</body>
+</html>
