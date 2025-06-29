@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>瓦猫时间盘</title>
+<style>
+  body {
+    background: #f4e3c3;
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: "Microsoft Yahei", sans-serif;
+  }
+
+  .container {
+    position: relative;
+    width: 600px;
+    height: 400px;
+  }
+
+  .half-circle {
+    position: absolute;
+    width: 400px;
+    height: 200px;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    border-top: 2px dashed #b58c5b;
+    border-radius: 200px 200px 0 0;
+    animation: rotate 30s linear infinite;
+    transform-origin: center bottom;
+  }
+
+  .half-circle img {
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+    border: 2px solid #fff;
+  }
+
+  .half-circle img:hover {
+    transform: scale(1.3);
+    box-shadow: 0 0 20px #f7b500;
+  }
+
+  .center-display {
+    position: absolute;
+    top: 180px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 160px;
+    height: 160px;
+    border-radius: 10px;
+    border: 4px solid #b58c5b;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .center-display img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  @keyframes rotate {
+    from { transform: translateX(-50%) rotate(0deg); }
+    to { transform: translateX(-50%) rotate(360deg); }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="half-circle" id="half-circle">
+    <!-- 瓦猫小图通过JS生成 -->
+  </div>
+
+  <div class="center-display" id="center-display">
+    <img id="center-img" src="https://via.placeholder.com/160/FF0000/FFFFFF?text=瓦猫1" alt="中心展示">
+  </div>
+</div>
+
+<script>
+  const imageUrls = [
+    'https://via.placeholder.com/100/FF0000/FFFFFF?text=瓦猫1',
+    'https://via.placeholder.com/100/00FF00/FFFFFF?text=瓦猫2',
+    'https://via.placeholder.com/100/0000FF/FFFFFF?text=瓦猫3',
+    'https://via.placeholder.com/100/FFFF00/FFFFFF?text=瓦猫4',
+    'https://via.placeholder.com/100/FF00FF/FFFFFF?text=瓦猫5',
+    'https://via.placeholder.com/100/00FFFF/FFFFFF?text=瓦猫6'
+  ];
+
+  const halfCircle = document.getElementById('half-circle');
+  const centerImg = document.getElementById('center-img');
+  const radius = 150;
+
+  imageUrls.forEach((url, index) => {
+    const angle = (180 / (imageUrls.length - 1)) * index - 90;
+    const img = document.createElement('img');
+    img.src = url;
+    img.style.left = `${radius + radius * Math.cos(angle * Math.PI / 180) - 35}px`;
+    img.style.top = `${radius - radius * Math.sin(angle * Math.PI / 180) - 35}px`;
+
+    img.addEventListener('click', () => {
+      centerImg.src = url;
+    });
+
+    halfCircle.appendChild(img);
+  });
+
+  // 悬停暂停动画
+  halfCircle.addEventListener('mouseenter', () => {
+    halfCircle.style.animationPlayState = 'paused';
+  });
+  halfCircle.addEventListener('mouseleave', () => {
+    halfCircle.style.animationPlayState = 'running';
+  });
+</script>
+
+</body>
+</html>
