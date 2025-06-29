@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>瓦猫时间盘</title>
+<style>
+  body {
+    background: #f4e3c3;
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+    font-family: "Microsoft Yahei", sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .container {
+    position: relative;
+    width: 800px;
+    height: 500px;
+    margin-top: 40px;
+  }
+
+  .half-circle {
+    position: absolute;
+    width: 600px;
+    height: 300px;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: rotate 50s linear infinite;
+    transform-origin: center bottom;
+  }
+
+  .half-circle .item {
+    position: absolute;
+    text-align: center;
+    width: 100px;
+    cursor: pointer;
+    transition: transform 0.3s;
+  }
+
+  .half-circle .item img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #fff;
+    box-shadow: 0 0 5px rgba(0,0,0,0.3);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  .half-circle .item:hover img {
+    transform: scale(1.2);
+    box-shadow: 0 0 20px #f7b500;
+  }
+
+  .half-circle .label {
+    margin-top: 5px;
+    font-size: 14px;
+    color: #6b4c2b;
+  }
+
+  .center-display {
+    position: absolute;
+    top: 260px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 220px;
+    height: 220px;
+    border: 4px solid #b58c5b;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 10px;
+  }
+
+  .center-display img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .info-box {
+    margin-top: 20px;
+    width: 600px;
+    padding: 15px;
+    background: #fff8e7;
+    border: 2px solid #b58c5b;
+    border-radius: 10px;
+    color: #333;
+    line-height: 1.6;
+  }
+
+  @keyframes rotate {
+    from { transform: translateX(-50%) rotate(0deg); }
+    to { transform: translateX(-50%) rotate(360deg); }
+  }
+</style>
+</head>
+<body>
+
+<h2 style="color:#6b4c2b; margin-top:20px;">瓦猫发展时间盘</h2>
+
+<div class="container">
+  <div class="half-circle" id="half-circle"></div>
+
+  <div class="center-display">
+    <img id="center-img" src="https://via.placeholder.com/220/FF0000/FFFFFF?text=瓦猫1" alt="中心展示">
+  </div>
+</div>
+
+<div class="info-box" id="info-box">
+  <strong>明代瓦猫：</strong> 这一时期的瓦猫造型朴实，强调实用与镇宅功能，常见传统兽面纹饰。
+</div>
+
+<script>
+  const items = [
+    {
+      img: 'https://via.placeholder.com/100/FF0000/FFFFFF?text=瓦猫1',
+      time: '明代',
+      title: '明代瓦猫',
+      desc: '这一时期的瓦猫造型朴实，强调实用与镇宅功能，常见传统兽面纹饰。'
+    },
+    {
+      img: 'https://via.placeholder.com/100/00FF00/FFFFFF?text=瓦猫2',
+      time: '清代',
+      title: '清代瓦猫',
+      desc: '清代瓦猫风格更加繁复，部分融入吉祥元素，作为装饰性增强。'
+    },
+    {
+      img: 'https://via.placeholder.com/100/0000FF/FFFFFF?text=瓦猫3',
+      time: '民国时期',
+      title: '民国瓦猫',
+      desc: '民国时期瓦猫保留传统样式的同时，也受到西方建筑装饰风格影响。'
+    },
+    {
+      img: 'https://via.placeholder.com/100/FFFF00/FFFFFF?text=瓦猫4',
+      time: '现代',
+      title: '现代瓦猫',
+      desc: '现代瓦猫在传统基础上，融入创新设计元素，兼顾美观与文化传承。'
+    }
+  ];
+
+  const halfCircle = document.getElementById('half-circle');
+  const centerImg = document.getElementById('center-img');
+  const infoBox = document.getElementById('info-box');
+  const radius = 200;
+
+  items.forEach((item, index) => {
+    const angle = (180 / (items.length - 1)) * index - 90;
+    const div = document.createElement('div');
+    div.className = 'item';
+    div.style.left = `${radius + radius * Math.cos(angle * Math.PI / 180) - 50}px`;
+    div.style.top = `${radius - radius * Math.sin(angle * Math.PI / 180) - 50}px`;
+
+    div.innerHTML = `
+      <img src="${item.img}" alt="${item.title}">
+      <div class="label">${item.time}</div>
+    `;
+
+    div.addEventListener('click', () => {
+      centerImg.src = item.img;
+      infoBox.innerHTML = `<strong>${item.title}：</strong> ${item.desc}`;
+    });
+
+    halfCircle.appendChild(div);
+  });
+
+  // 悬停暂停旋转
+  halfCircle.addEventListener('mouseenter', () => {
+    halfCircle.style.animationPlayState = 'paused';
+  });
+  halfCircle.addEventListener('mouseleave', () => {
+    halfCircle.style.animationPlayState = 'running';
+  });
+</script>
+
+</body>
+</html>
